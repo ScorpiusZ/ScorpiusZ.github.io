@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Building a robust JSON API client with Ruby"
+title:  "My First Blog"
 date:   2014-11-13 12:10:00
 categories: blog
 tags: chaos
