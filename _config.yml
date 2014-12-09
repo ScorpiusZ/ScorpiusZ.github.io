@@ -1,8 +1,8 @@
 # Site settings
 title: "ScorpiusZ's Blog"
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://Scorpiuszjj.github.io" # the base hostname & protocol for your site
-github_username: Scorpiuszjj
+url: "http://scorpiusz.github.io" # the base hostname & protocol for your site
+github_username: ScorpiusZ
 
 timezone: Beijing
 # Build settings
