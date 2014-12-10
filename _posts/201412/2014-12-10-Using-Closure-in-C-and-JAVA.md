@@ -3,7 +3,7 @@ layout: post
 title:  "Functiong programming style in C and JAVA"
 date:   2014-12-10 14:05:37
 categories: programming
-tags: tags
+tags: programming
 author: "ScorpiusZ"
 ---
 
