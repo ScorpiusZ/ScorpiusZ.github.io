@@ -2,8 +2,8 @@
 layout: post
 title:  "My First Blog"
 date:   2014-11-13 12:10:00
-categories: blog
-tags: chaos
+categories: programming
+tags: programming
 author: "ScorpiusZ"
 ---
 
