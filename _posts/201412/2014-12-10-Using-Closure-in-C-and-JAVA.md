@@ -9,7 +9,7 @@ author: "ScorpiusZ"
 
 ###SML language code
 
-``` 
+``` sml
 (* Note this file is sort of misnamed.  It /does/ use closures.  It is code
    that we will compare to code in Java or C that does not use closures. *)
 
@@ -41,7 +41,7 @@ fun countNs (xs, n : int) = length (filter (fn x => x=n) xs)
 
 ### JAVA code with same fuction
 
-```
+```java
 / Note: This code compiles but has not been carefully tested. 
 //       Bug reports welcome.
 
@@ -112,7 +112,7 @@ class ExampleClients {
 
 
 ### C code with same function 
-```
+```c
 // Note: This code compiles but has not been carefully tested. 
 //       Bug reports welcome.
 
