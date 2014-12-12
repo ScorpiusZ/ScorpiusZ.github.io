@@ -1,4 +1,4 @@
-Scorpiuszjj.github.io
+ScorpiusZ.github.io
 =====================
 
 my blog
