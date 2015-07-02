@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Using Postgresql in Rails"
-date:   2015年 7月 2日 星期四 13时53分15秒 CST
+date:   2015-07-02 13:55:37
 categories: programming
 tags: programming
 author: "ScorpiusZ"
