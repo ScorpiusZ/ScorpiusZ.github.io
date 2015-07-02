@@ -242,7 +242,7 @@ end
  
  对比一下 Array 加索引和 不加索引的速度
  
- ```
+ ```ruby
  2.1.5 :024 >   Member.where(" interests @> ARRAY[?]::varchar[]",["宅", "有责任心"]).count
    (24.2ms)  SELECT COUNT(*) FROM "members" WHERE ( interests @> ARRAY['宅','有责任心']::varchar[])
  => 7012 
