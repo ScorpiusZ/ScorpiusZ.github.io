@@ -34,7 +34,7 @@ PostgreSQL 是一个自由的对象-关系数据库服务器(数据库管理系�
 ###数据类型
 
 #### 1.[Byte](http://www.postgresql.org/docs/current/static/datatype-binary.html)
-```
+```ruby
 create_table :documents do |t|
   t.binary 'payload'
 end
@@ -49,7 +49,7 @@ Document.create payload: data
 ```
 
 #### 2.[Array](http://www.postgresql.org/docs/current/static/arrays.html)
-```
+```ruby
 create_table :books do |t|
   t.string 'title'
   t.string 'tags', array: true
@@ -78,7 +78,7 @@ Book.where("array_length(ratings, 1) >= 3")
 ```
 
 #### 3.[Hstore](http://www.postgresql.org/docs/current/static/hstore.html)
-```
+```ruby
 create_table :books do |t|
   t.string 'title'
   t.string 'tags', array: true
@@ -107,7 +107,7 @@ Book.where("array_length(ratings, 1) >= 3")
 ```
 
 #### 4.[JSON](http://www.postgresql.org/docs/current/static/datatype-json.html)
-```
+```ruby
 create_table :events do |t|
   t.json 'payload'
 end
@@ -128,7 +128,7 @@ Event.where("payload->>'kind' = ?", "user_renamed")
 ```
 
 #### 5.[Range Types](http://www.postgresql.org/docs/current/static/rangetypes.html)
-```
+```ruby
 create_table :events do |t|
   t.daterange 'duration'
 end
@@ -159,7 +159,7 @@ event.ends_at # => Thu, 13 Feb 2014
 #### 7.[UUID](http://www.postgresql.org/docs/current/static/datatype-uuid.html)
 #### 8.[Bit String Types](http://www.postgresql.org/docs/current/static/datatype-bit.html)
 #### 9.[Network Address Types](http://www.postgresql.org/docs/current/static/datatype-net-types.html)
-```
+```ruby
 create_table(:devices, force: true) do |t|
   t.inet 'ip'
   t.cidr 'network'
@@ -190,7 +190,7 @@ macbook.address
 ###列子
 实现一个 Model Member 	
 
-```
+```ruby
 class CreateMembers < ActiveRecord::Migration
   def change
     create_table :members do |t|
@@ -208,21 +208,21 @@ end
 ```
 给 Aarry Column add index
 
-```
+```ruby
 class AddIndexOnInterestToMember < ActiveRecord::Migration
   def change
     add_index :members, :interests, using: 'gin'
   end
 end
 ```
-```
+```ruby
 2.1.5 :001 > Member.count
    (443.0ms)  SELECT COUNT(*) FROM "members"
  => 1030004 
 ```
 查询兴趣
 
-```
+```ruby
 2.1.5 :009 > Member.where(" interests @> ARRAY[?]::varchar[]",["宅", "有责任心"]).count
    (44.9ms)  SELECT COUNT(*) FROM "members" WHERE ( interests @> ARRAY['宅','有责任心']::varchar[])
  => 7012 
@@ -234,7 +234,7 @@ end
 
 查询性别及地区
 
-```
+```ruby
 2.1.5 :018 > Member.where("info->> 'sex' = ?",'1').where("info->> 'location_id' = ?",'1').limit(10).map{|e| e.info}
   Member Load (10.3ms)  SELECT  "members".* FROM "members" WHERE (info->> 'sex' = '1') AND (info->> 'location_id' = '1') LIMIT 10
  => [{"nickname"=>"name43", "sex"=>1, "birthday"=>"1992-01-01", "location_id"=>1, "height"=>175, "weight"=>115}, {"nickname"=>"name16", "sex"=>1, "birthday"=>"1979-01-01", "location_id"=>1, "height"=>153, "weight"=>161}, {"nickname"=>"name6", "sex"=>1, "birthday"=>"1979-01-01", "location_id"=>1, "height"=>143, "weight"=>162}, {"nickname"=>"name8", "sex"=>1, "birthday"=>"1979-01-01", "location_id"=>1, "height"=>186, "weight"=>167}, {"nickname"=>"name88", "sex"=>1, "birthday"=>"1975-01-01", "location_id"=>1, "height"=>162, "weight"=>172}, {"nickname"=>"name82", "sex"=>1, "birthday"=>"1975-01-01", "location_id"=>1, "height"=>152, "weight"=>101}, {"nickname"=>"name20", "sex"=>1, "birthday"=>"1979-01-01", "location_id"=>1, "height"=>146, "weight"=>143}, {"nickname"=>"name3", "sex"=>1, "birthday"=>"1992-01-01", "location_id"=>1, "height"=>197, "weight"=>175}, {"nickname"=>"name51", "sex"=>1, "birthday"=>"1974-01-01", "location_id"=>1, "height"=>152, "weight"=>161}, {"nickname"=>"name31", "sex"=>1, "birthday"=>"1978-01-01", "location_id"=>1, "height"=>174, "weight"=>99}] 
@@ -254,10 +254,10 @@ end
  对比一下 JSON 加索引 与不加索引的 差距
  给 info 的 location_id 添加索引
  
- ```
+ ```ruby
  CREATE INDEX ON members((info->>'location_id'));
  ```
- ```
+ ```ruby
  2.1.5 :004 > Member.where("info->> 'location_id' = ?",'2').count
    (1221.2ms)  SELECT COUNT(*) FROM "members" WHERE (info->> 'location_id' = '2')
  => 30249 
